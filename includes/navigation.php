@@ -2,7 +2,7 @@
 <header class="main-header">
 
   <!-- Logo -->
-  <a href="../index.php" class="logo">
+  <a href="index.php" class="logo">
     <!-- mini logo for sidebar mini 50x50 pixels -->
     <span class="logo-mini"><b>P</b>AC</span>
     <!-- logo for regular state and mobile devices -->
@@ -70,38 +70,38 @@
     <!-- Sidebar Menu -->
     <ul class="sidebar-menu">
       <li class="header">MENU</li>
-      <!-- Optionally, you can add icons to the links -->
+
       <li><a href="index.php"><i class="fa fa-newspaper-o"></i> <span>Publier un article</span></a></li>
+
       <li class="treeview">
-        <a href="#"><i class="fa fa-users"></i> <span>Emissions</span> <i class="fa fa-angle-left pull-right"></i></a>
+        <a href="#"><i class="fa fa-users"></i> <span>Gérer les émissions</span> <i class="fa fa-angle-left pull-right"></i></a>
         <ul class="treeview-menu">
           <?php
-            $emissions = $db->query("SELECT * FROM emission");
+            $emissions = $db->query("SELECT * FROM emissions");
   			    $emissions = $emissions->fetchAll(PDO::FETCH_ASSOC);
 
             foreach ($emissions as $emission) {
-              echo "<li><a href=\"emission.php?id=".$emission["id_emission"]."\">".$emission["lib_emission"]."</a></li>";
+              echo "<li><a href=\"gestion_emission.php?id=".$emission["id_emission"]."\">".$emission["titre_emission"]."</a></li>";
             }
           ?>
-          <li><i class="fa fa-minus"></i><a href="ajout-emission.php">Ajouter une émission</a></li>
+          <li>
+            <i class="fa fa-minus"></i><a href="ajout_emission.php">Ajouter une émission</a>
+          </li>
         </ul>
       </li>
+
+      <li><a href="ajout_evenement.php"><i class="fa fa-calendar"></i> <span>Ajouter un événement</span></a></li>
+
+      <li><a href="ajout_alerte.php"><i class="fa fa-exclamation-triangle"></i> <span>Publier une alerte</span></a></li>
+
       <li class="treeview">
-        <a href="#"><i class="fa fa-calendar"></i> <span>Gérer le calendrier</span> <i class="fa fa-angle-left pull-right"></i></a>
+        <a href="#"><i class="fa fa-wrench" aria-hidden="true"></i> <span>Autres</span> <i class="fa fa-angle-left pull-right"></i></a>
         <ul class="treeview-menu">
-          <li><a href="ajout-programme.php">Programme radio</a></li>
-          <li><a href="ajout-evenement.php">Évenement</a></li>
+          <li><a href="gestion_type_evenement.php"><span>Gérer les types d'événement</span></a></li>
         </ul>
       </li>
-      <li class="treeview">
-        <a href="#"><i class="fa fa-exclamation-triangle"></i> <span>Publier un bulletin</span> <i class="fa fa-angle-left pull-right"></i></a>
-        <ul class="treeview-menu">
-          <li><a href="#"><i class="fa fa-cloud"></i> Météo</a></li>
-          <li><a href="#"><i class="fa fa-road"></i> Routier</a></li>
-        </ul>
-      </li>
-      <li><a href="#"><i class="fa fa-picture-o"></i> <span>Portfolio</span></a></li>
-      <li><a href="#"><i class="fa fa-envelope-o"></i> <span>Boite de reception</span></a></li>
+
+
     </ul>
     <!-- /.sidebar-menu -->
   </section>

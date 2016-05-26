@@ -106,16 +106,16 @@
 
         unitAliases = {
             ms : 'millisecond',
-            s : 'second',
+            s : 'seconde',
             m : 'minute',
-            h : 'hour',
-            d : 'day',
+            h : 'heure',
+            d : 'jour',
             D : 'date',
-            w : 'week',
+            w : 'semaine',
             W : 'isoWeek',
-            M : 'month',
+            M : 'mois',
             Q : 'quarter',
-            y : 'year',
+            y : 'année',
             DDD : 'dayOfYear',
             e : 'weekday',
             E : 'isoWeekday',
@@ -875,12 +875,12 @@
             this._ordinalParseLenient = new RegExp(this._ordinalParse.source + '|' + /\d{1,2}/.source);
         },
 
-        _months : 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_'),
+        _months : 'Janvier_Fevrier_Mars_Avril_Mai_Juin_Juillet_Aout_Septembre_Octobre_Novembre_Decembre'.split('_'),
         months : function (m) {
             return this._months[m.month()];
         },
 
-        _monthsShort : 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
+        _monthsShort : 'Jan_Fev_Mar_Avr_Mai_Jun_Jui_Aou_Sep_Oct_Nov_Dec'.split('_'),
         monthsShort : function (m) {
             return this._monthsShort[m.month()];
         },
