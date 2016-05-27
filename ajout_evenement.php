@@ -203,5 +203,20 @@
 
   });
 </script>
+
+<script>
+
+	var toast = $("#custom-toast");
+	function show_toast(message){
+		toast.html(message);
+		toast.slideToggle().delay(2000).slideToggle();
+	}
+
+</script>
+<?php
+	if(isset($_GET['message'])){ ?>
+		<script>show_toast('<?=$_GET['message'];?>');</script>
+	<?php }
+?>
 </body>
 </html>

@@ -54,6 +54,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
       <!-- Your Page Content Here -->
     <div class="row">
+	  <form method="post" action="traitements/add_emission.php" enctype="multipart/form-data">
       <div class="col-md-6">
         <div class="box box-primary">
           <div class="box-header with-border">
@@ -62,12 +63,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <div class="box-body">
             <div class="form-group">
               <label>Titre de l'émission</label>
-              <input type="text" class="form-control" placeholder="Titre de l'émission">
+              <input name="titre" type="text" class="form-control" placeholder="Titre de l'émission">
             </div>
             <br>
             <div class="form-group">
               <label for="exampleInputFile">Image de couverture de l'émission</label>
-              <input type="file" id="exampleInputFile">
+              <input name="image" type="file" id="exampleInputFile">
             </div>
           </div>
           <!-- /.box-body -->
@@ -82,14 +83,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- /.box-header -->
           <div class="box-body pad">
             <form role="form">
-              <textarea class="textarea" placeholder="Rédiger l'article" style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+              <textarea name="description" class="textarea" placeholder="Rédiger l'article" style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
           </div>
           <div class="box-footer">
-            <button type="submit" data-toggle="tooltip" title="De toute façon ça marche pô là" class="btn btn-primary disabled">Envoyer</button>
+            <button type="submit" class="btn btn-primary">Envoyer</button>
           </div>
         </form>
         </div>
       </div>
+  	</form>
     </div>
 
     </section>
@@ -143,5 +145,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
     $(".textarea").wysihtml5();
   });
 </script>
+
+<script>
+
+	var toast = $("#custom-toast");
+	function show_toast(message){
+		toast.html(message);
+		toast.slideToggle().delay(2000).slideToggle();
+	}
+
+</script>
+<?php
+	if(isset($_GET['message'])){ ?>
+		<script>show_toast('<?=$_GET['message'];?>');</script>
+	<?php }
+?>
 </body>
 </html>
