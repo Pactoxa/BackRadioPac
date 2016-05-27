@@ -15,17 +15,24 @@
 				$_SESSION['nom'] = $sel['nom_admin'];
 				$_SESSION['prenom'] = $sel['prenom_admin'];
 
+
+
+				echo $_SESSION['id'];
+
 				header("Location: http://localhost/BackRadioPac/index.php");
 
-			} else {
-				header("Location: http://localhost/RadioPac/index.php");
-			}
+				} else {
+					header("Location: http://localhost/RadioPac/index.php");
 
-		} else {
-			header("Location: http://localhost/RadioPac/index.php");
-		}
+				}
 
-	} else {
-		header("Location: http://localhost/RadioPac/index.php");
+				} else {
+					header("Location: http://localhost/RadioPac/index.php");
+
+				}
+
+				} else {
+					header("Location: http://localhost/RadioPac/index.php");
+
 	}
 ?>

@@ -55,7 +55,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <br>
     <!-- Main content -->
     <section class="content">
-
+		<form method="post" action="traitements/ajout_alerte.php">
       <!-- Your Page Content Here -->
     <div class="row">
       <div class="col-md-6">
@@ -67,12 +67,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="form-group">
                 <div class="form-group">
                   <label>Intitulé de l'alerte</label>
-                  <input type="text" class="form-control" placeholder="Titre de l'alerte">
+                  <input name="titre" type="text" class="form-control" placeholder="Titre de l'alerte">
                 </div>
             </div>
             <div class="form-group">
               <label>Type d'alerte</label>
-              <select class="form-control">
+              <select name="type" class="form-control">
                 <?php
                   foreach($alertes as $alerte) { ?>
                     <option value="<?=$alerte['id_type_alerte'];?>"><?=$alerte['lib_type_alerte'];?></option>
@@ -93,17 +93,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </div>
           <!-- /.box-header -->
           <div class="box-body pad">
-            <form role="form">
-              <textarea class="textarea" placeholder="Rédiger l'article" style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+        	<textarea name="contenu" class="textarea" placeholder="Rédiger l'article" style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
           </div>
           <div class="box-footer">
-            <button type="submit" data-toggle="tooltip" title="De toute façon ça marche pô là" class="btn btn-primary disabled">Envoyer</button>
+          <button id="add_alerte" type="submit" data-toggle="tooltip"  class="btn btn-primary">Envoyer</button>
           </div>
-        </form>
         </div>
       </div>
     </div>
 
+		</form>
     </section>
     <!-- /.content -->
   </div>
@@ -146,14 +145,5 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- Bootstrap WYSIHTML5 -->
 <script src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 
-<!-- Page script -->
-<script>
-  $(function () {
-    //Initialize Select2 Elements
-    $(".select2").select2();
-    //Editeur de texte
-    $(".textarea").wysihtml5();
-  });
-</script>
 </body>
 </html>

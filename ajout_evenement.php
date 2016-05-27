@@ -55,6 +55,7 @@
       <!-- Your Page Content Here -->
     <div class="row">
       <div class="col-md-6">
+				<form method="post" action="traitements/ajout_evenement.php" enctype="multipart/form-data">
         <div class="box box-primary">
           <div class="box-header with-border">
             <h3 class="box-title">Info événement</h3>
@@ -62,23 +63,23 @@
           <div class="box-body">
 						<div class="form-group">
               <label>Nom de l'événement</label>
-            	<input type="text" class="form-control" value="" placeholder="Nom de l'événement">
+            	<input name="title" type="text" class="form-control" value="" placeholder="Nom de l'événement">
             </div>
 						<div class="form-group">
               <label>Lieu de l'événement</label>
-            	<input type="text" class="form-control" value="" placeholder="Lieu de l'événement">
+            	<input name="lieu" type="text" class="form-control" value="" placeholder="Lieu de l'événement">
             </div>
 						<div class="form-group">
               <label>Description de l'événement (calendrier)</label>
-            	<input type="text" class="form-control" value="" placeholder="Description pour calendrier">
+            	<input name="descri" type="text" class="form-control" value="" placeholder="Description pour calendrier">
             </div>
 						<div class="form-group">
               <label>Lien du site web de l'événement </label>
-            	<input type="text" class="form-control" value="" placeholder="Lien du site web de l'événement">
+            	<input name="site" type="text" class="form-control" value="" placeholder="Lien du site web de l'événement">
             </div>
             <div class="form-group">
               <label>Type d'événement</label>
-              <select class="form-control select2" style="width: 100%;">
+              <select name="type" class="form-control select2" style="width: 100%;">
 								<?php
 									foreach($types as $type){ ?>
 										<option value="<?=$type['id_type_event'];?>"><?=$type['lib_type_event'];?></option>
@@ -89,7 +90,7 @@
             <br>
             <div class="form-group">
               <label for="exampleInputFile">Mettre une image de couverture (optionnel)</label>
-              <input type="file" id="exampleInputFile">
+              <input name="image" type="file" id="exampleInputFile">
             </div>
           </div>
           <!-- /.box-body -->
@@ -106,7 +107,7 @@
                 <div class="input-group-addon">
                   <i class="fa fa-clock-o"></i>
                 </div>
-                <input type="text" class="form-control pull-left" id="horaire_debut">
+                <input name="debut" type="text" class="form-control pull-left" id="horaire_debut">
               </div><!-- /.input group -->
               <br>
               <label>Fin de l'événement</label>
@@ -114,13 +115,12 @@
                 <div class="input-group-addon">
                   <i class="fa fa-clock-o"></i>
                 </div>
-                <input type="text" class="form-control pull-left" id="horaire_fin">
+                <input name="fin" type="text" class="form-control pull-left" id="horaire_fin">
               </div><!-- /.input group -->
             </div><!-- /.form group -->
 
           </div>
           <div class="box-footer">
-            <button type="submit" class="btn btn-primary">Ajouter l'événement</button>
           </div>
           <!-- /.box-body -->
         </div>
@@ -133,9 +133,9 @@
           </div>
           <!-- /.box-header -->
           <div class="box-body pad">
-            <form role="form">
-              <textarea class="textarea" placeholder="Rédiger l'article" style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+              <textarea name="detail" class="textarea" placeholder="Rédiger l'article" style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
           </div>
+					<button type="submit" class="btn btn-primary">Ajouter l'événement</button>
         </form>
         </div>
       </div>
@@ -194,11 +194,11 @@
     $(".textarea").wysihtml5();
 
 		$('#horaire_debut').datetimepicker({
-      format : 'DD/MM/YYYY HH:mm:ss'
+      format : 'YYYY-MM-DD HH:mm:ss'
     });
 
     $('#horaire_fin').datetimepicker({
-      format : 'DD/MM/YYYY HH:mm:ss'
+      format : 'YYYY-MM-DD HH:mm:ss'
     });
 
   });

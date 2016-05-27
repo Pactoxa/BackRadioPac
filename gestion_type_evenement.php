@@ -61,14 +61,15 @@
             <h3 class="box-title">Info type d'événement</h3>
           </div>
           <div class="box-body">
+						<form method="post" action="traitements/ajout_type_alerte.php" enctype="multipart/form-data">
             <div class="form-group">
               <label>Nom du type</label>
-            	<input type="text" class="form-control" value="" placeholder="Nom du type">
+            	<input required name="titre" type="text" class="form-control" value="" placeholder="Nom du type">
             </div>
             <br>
             <div class="form-group">
               <label for="exampleInputFile">Image par défaut du type</label>
-              <input type="file" id="exampleInputFile">
+              <input required name="image" type="file" id="exampleInputFile">
             </div>
             <br>
             <div class="form-group">
@@ -77,10 +78,12 @@
 								<div class="input-group-addon">
 									<i></i>
 								</div>
-								<input type="text" class="form-control">
-
+								<input required name="color" type="text" class="form-control">
               </div><!-- /.input group -->
             </div>
+						<div class="box-footer">
+	          <button id="add_alerte" type="submit" data-toggle="tooltip"  class="btn btn-primary">Envoyer</button>
+	          </div>
           </div>
           <!-- /.box-body -->
         </div>
