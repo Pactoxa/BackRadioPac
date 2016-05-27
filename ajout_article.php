@@ -3,7 +3,7 @@
 	include'includes/database.php';
 
 	$sql = "SELECT * FROM tags";
-  $tags = $db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+  	$tags = $db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
 	$sql = "SELECT * FROM categories";
 	$categories = $db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
@@ -30,6 +30,7 @@
   <link rel="stylesheet" href="dist/css/skins/skin-green.min.css">
   <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
+ <link rel="stylesheet" href="dist/css/custom.css">
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -53,68 +54,66 @@
     <br>
     <!-- Main content -->
     <section class="content">
-
+	  <form method="post" action="traitements/ajax/add_article.php" enctype="multipart/form-data">
       <!-- Your Page Content Here -->
-    <div class="row">
-      <div class="col-md-6">
-        <div class="box box-primary">
-          <div class="box-header with-border">
-            <h3 class="box-title">Info article</h3>
-          </div>
-          <div class="box-body">
-						<div class="form-group">
-							<label>Titre de l'article</label>
-							<input type="text" class="form-control" value="" placeholder="Titre de l'article">
-						</div>
-						<br>
-            <div class="form-group">
-              <label>Catégorie</label>
-              <select class="form-control select2" style="width: 100%;">
-								<?php
-									foreach($categories as $categorie){ ?>
-										<option value="<?=$categorie['id_cat'];?>"><?=$categorie['lib_cat'];?></option>
-								<?php  }
-								 ?>
-              </select>
-            </div>
-            <br>
-            <div class="form-group">
-              <label>Tags (optionnels)</label>
-              <select class="form-control select2" multiple="multiple" data-placeholder="Ajouter un tag" style="width: 100%;">
-								<?php
-									foreach($tags as $tag){ ?>
-										<option value="<?=$tag['id_tag'];?>"><?=$tag['lib_tag'];?></option>
-								<?php  }
-								 ?>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="exampleInputFile">Mettre une image de couverture (optionnel)</label>
-              <input type="file" id="exampleInputFile">
-            </div>
-          </div>
-          <!-- /.box-body -->
-        </div>
-        <!-- /.box -->
-      </div>
-      <div class="col-md-6">
-        <div class="box box-success">
-          <div class="box-header with-border">
-            <h3 class="box-title">Contenu de l'article</h3>
-          </div>
-          <!-- /.box-header -->
-          <div class="box-body pad">
-            <form role="form">
-              <textarea class="textarea" placeholder="Rédiger l'article" style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-          </div>
-          <div class="box-footer">
-            <a id="submit-form" class="btn btn-primary">Soumettre article</a>
-          </div>
-        </form>
-        </div>
-      </div>
-    </div>
-
+		    <div class="row">
+			      <div class="col-md-6">
+				        <div class="box box-primary">
+					          <div class="box-header with-border">
+					            	<h3 class="box-title">Info article</h3>
+					          </div>
+					          <div class="box-body">
+									<div class="form-group">
+										<label>Titre de l'article</label>
+										<input type="text" class="form-control" name="titre" id="titre-article" placeholder="Titre de l'article">
+									</div>
+									<br>
+						            <div class="form-group">
+						              <label>Catégorie</label>
+						              <select id="categorie-article" name="categorie" class="form-control select2" style="width: 100%;">
+										<?php
+											foreach($categories as $categorie){ ?>
+												<option value="<?=$categorie['id_cat'];?>"><?=$categorie['lib_cat'];?></option>
+										<?php  }
+										 ?>
+						              </select>
+						            </div>
+					            	<br>
+						            <div class="form-group">
+						              <label>Tags (optionnels)</label>
+						              <select id="tags-article" name="tags[]" class="form-control select2" multiple="multiple" data-placeholder="Ajouter un tag" style="width: 100%;">
+											<?php
+												foreach($tags as $tag){ ?>
+													<option value="<?=$tag['id_tag'];?>"><?=$tag['lib_tag'];?></option>
+											<?php  }
+											 ?>
+						              </select>
+						            </div>
+						            <div class="form-group">
+						              <label for="exampleInputFile">Mettre une image de couverture (optionnel)</label>
+						              <input type="file" name="image" id="image-article">
+						            </div>
+					          </div>
+				          <!-- /.box-body -->
+				        </div>
+			        <!-- /.box -->
+			      </div>
+			      <div class="col-md-6">
+				        <div class="box box-success">
+					          <div class="box-header with-border">
+					            	<h3 class="box-title">Contenu de l'article</h3>
+					          </div>
+					          <!-- /.box-header -->
+					          <div class="box-body pad">
+					              	<textarea name="contenu" id="contenu-article" class="textarea" placeholder="Rédiger l'article" style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+					          </div>
+					          <div class="box-footer">
+					            <button type="submit" id="submit-form" class="btn btn-primary">Soumettre article</button>
+					          </div>
+				        </div>
+			      </div>
+		    </div>
+		</form>
     </section>
     <!-- /.content -->
   </div>
@@ -128,6 +127,7 @@
   <?php include("includes/footer.html") ?>
 
 </div>
+
 <!-- ./wrapper -->
 
 <!-- REQUIRED JS SCRIPTS -->
@@ -175,26 +175,17 @@
 <script>
 
 	var toast = $("#custom-toast");
-	function customtoast(message, cancel){
-		if(cancel){
-			toast.html(message+'<button class="custom-toast-dismiss pull-right">ANNULER</button>');
-		} else {
-			toast.html(message);
-		}
+	function show_toast(message){
+		toast.html(message);
 		toast.slideToggle().delay(2000).slideToggle();
 	}
 
 </script>
-
-<script>
-
-	$('#submit-form').click(function(){
-		console.log('coucou');
-	});
-
-</script>
-
-
+<?php
+	if(isset($_GET['message'])){ ?>
+		<script>show_toast('<?=$_GET['message'];?>');</script>
+	<?php }
+?>
 
 </body>
 </html>
