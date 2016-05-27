@@ -25,7 +25,7 @@
             <!-- The user image in the navbar-->
             <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-            <span class="hidden-xs">Administrateur</span>
+            <span class="hidden-xs"><?=$_SESSION['nom']." ".$_SESSION['prenom'];?></span>
           </a>
           <ul class="dropdown-menu">
             <!-- The user image in the menu -->
@@ -33,13 +33,13 @@
               <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
               <p>
-                Administrateur
+                <?=$_SESSION['nom']." ".$_SESSION['prenom'];?>
               </p>
             </li>
             <!-- Menu Footer-->
             <li class="user-footer">
               <div class="pull-right">
-                <a href="#" class="btn btn-default btn-flat">Se déconnecter</a>
+                <a href="traitements/deconnexion.php" class="btn btn-default btn-flat">Se déconnecter</a>
               </div>
             </li>
           </ul>
@@ -61,7 +61,7 @@
         <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
       </div>
       <div class="pull-left info">
-        <p>Administrateur</p>
+        <p><?=$_SESSION['nom']." ".$_SESSION['prenom'];?></p>
         <!-- Status -->
         <a href="#"><i class="fa fa-circle text-success"></i> Connecté</a>
       </div>

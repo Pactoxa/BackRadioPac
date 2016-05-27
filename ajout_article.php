@@ -108,7 +108,7 @@
               <textarea class="textarea" placeholder="Rédiger l'article" style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
           </div>
           <div class="box-footer">
-            <button type="submit" data-toggle="tooltip" title="De toute façon ça marche pô là" class="btn btn-primary disabled">Soumettre article</button>
+            <a id="submit-form" class="btn btn-primary">Soumettre article</a>
           </div>
         </form>
         </div>
@@ -119,6 +119,10 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
+  <!-- toast -->
+	<div id="custom-toast" style="display:none;" id-action="" action="">
+	</div>
 
   <!-- Main Footer -->
   <?php include("includes/footer.html") ?>
@@ -166,5 +170,31 @@
     $(".textarea").wysihtml5();
   });
 </script>
+
+<!-- Toast -->
+<script>
+
+	var toast = $("#custom-toast");
+	function customtoast(message, cancel){
+		if(cancel){
+			toast.html(message+'<button class="custom-toast-dismiss pull-right">ANNULER</button>');
+		} else {
+			toast.html(message);
+		}
+		toast.slideToggle().delay(2000).slideToggle();
+	}
+
+</script>
+
+<script>
+
+	$('#submit-form').click(function(){
+		console.log('coucou');
+	});
+
+</script>
+
+
+
 </body>
 </html>
