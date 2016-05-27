@@ -86,54 +86,55 @@
               <!-- /.box-tools -->
             </div>
             <!-- /.box-header -->
-            <div class="box-body">
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="box box-purple">
-                    <div class="box-header with-border">
-                      <h3 class="box-title">Info article</h3>
-                    </div>
-                    <div class="box-body">
-                      <label>Titre de l'article</label>
-                      <input type="text" class="form-control" value="" placeholder="Titre de l'article">
-                      <br>
-                      <div class="form-group">
-                        <label>Tags (optionnels)</label>
-                        <select class="form-control select2" multiple="multiple" data-placeholder="Ajouter un tag" style="width: 100%;">
-                          <?php
-                            foreach($tags as $tag){ ?>
-                              <option value="<?=$tag['id_tag'];?>"><?=$tag['lib_tag'];?></option>
-                          <?php  }
-                           ?>
-                        </select>
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleInputFile">Mettre une image de couverture (optionnel)</label>
-                        <input type="file" id="exampleInputFile">
-                      </div>
-                    </div>
-                    <!-- /.box-body -->
-                  </div>
-                  <!-- /.box -->
-                  <div class="box-footer">
-                    <button type="submit" class="btn btn-primary">Envoyer</button>
-                  </div>
-                </div>
-                <div class="col-md-8">
-                  <div class="box">
-                    <div class="box-header">
-                      <h3 class="box-title">Rédiger l'article</h3>
-                    </div>
-                    <!-- /.box-header -->
-                    <div class="box-body pad">
-                      <form role="form">
-                        <textarea class="textarea" placeholder="Rédiger l'article" style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                    </div>
-                  </form>
-                  </div>
-                </div>
-              </div>
-            </div>
+			<form method="post" action="traitements/add_article_emission.php" enctype="multipart/form-data">
+	            <div class="box-body">
+	              <div class="row">
+	                <div class="col-md-4">
+	                  <div class="box box-purple">
+	                    <div class="box-header with-border">
+	                      <h3 class="box-title">Info article</h3>
+	                    </div>
+		                    <div class="box-body">
+		                      <label>Titre de l'article</label>
+		                      <input name="titre" type="text" class="form-control" value="" placeholder="Titre de l'article">
+		                      <br>
+		                      <div class="form-group">
+		                        <label>Tags (optionnels)</label>
+		                        <select class="form-control select2" name="tags[]" multiple="multiple" data-placeholder="Ajouter un tag" style="width: 100%;">
+		                          <?php
+		                            foreach($tags as $tag){ ?>
+		                              <option value="<?=$tag['id_tag'];?>"><?=$tag['lib_tag'];?></option>
+		                          <?php  }
+		                           ?>
+		                        </select>
+		                      </div>
+		                      <div class="form-group">
+		                        <label for="exampleInputFile">Mettre une image de couverture (optionnel)</label>
+		                        <input name="image" type="file" id="exampleInputFile">
+		                      </div>
+		                    </div>
+	                    <!-- /.box-body -->
+	                  </div>
+	                  <!-- /.box -->
+	                  <div class="box-footer">
+	                    <button type="submit" class="btn btn-primary">Envoyer</button>
+	                  </div>
+	                </div>
+	                <div class="col-md-8">
+	                  <div class="box">
+	                    <div class="box-header">
+	                      <h3 class="box-title">Rédiger l'article</h3>
+	                    </div>
+	                    <!-- /.box-header -->
+	                    <div class="box-body pad">
+	                        <textarea name="contenu" class="textarea" placeholder="Rédiger l'article" style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+	                    </div>
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+				<input style="display:none;" name='emission' value="<?=$id;?>"/>
+			</form>
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
@@ -156,6 +157,7 @@
             <!-- /.box-header -->
             <div class="box-body">
               <div class="row">
+				<form method="post" action="traitements/add_podcast_emission.php" enctype="multipart/form-data">
                 <div class="col-md-4">
                   <div class="box box-purple">
                     <div class="box-header with-border">
@@ -163,15 +165,15 @@
                     </div>
                     <div class="box-body">
                       <label>Titre du podcast </label>
-                      <input type="text" class="form-control" value="" placeholder="Titre du podcast">
+                      <input name="titre" type="text" class="form-control" value="" placeholder="Titre du podcast">
                       <br>
                       <div class="form-group">
                         <label for="exampleInputFile">Podcast </label>
-                        <input type="file" id="exampleInputFile">
+                        <input name="podcast" type="file" id="exampleInputFile">
                       </div>
                       <div class="form-group">
                         <label>Tags (optionnels)</label>
-                        <select class="form-control select2" multiple="multiple" data-placeholder="Ajouter un tag" style="width: 100%;">
+                        <select name="tags[]" class="form-control select2" multiple="multiple" data-placeholder="Ajouter un tag" style="width: 100%;">
                           <?php
                             foreach($tags as $tag){ ?>
                               <option value="<?=$tag['id_tag'];?>"><?=$tag['lib_tag'];?></option>
@@ -181,7 +183,7 @@
                       </div>
                       <div class="form-group">
                         <label for="exampleInputFile">Insérer une image de présentation (optionnel)</label>
-                        <input type="file" id="exampleInputFile">
+                        <input name="image" type="file" id="exampleInputFile">
                       </div>
                     </div>
                     <!-- /.box-body -->
@@ -198,12 +200,12 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body pad">
-                      <form role="form">
-                        <textarea class="textarea" placeholder="Contenu du podcast" style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                        <textarea name="contenu" class="textarea" placeholder="Contenu du podcast" style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                     </div>
-                  </form>
                   </div>
                 </div>
+				<input style="display:none;" name='emission' value="<?=$id;?>"/>
+				</form>
               </div>
             </div>
             <!-- /.box-body -->
@@ -215,6 +217,7 @@
       <br>
 
       <div class="row">
+		<form method="post" action="traitements/edit_emission.php" enctype="multipart/form-data">
         <div class="col-md-6 col-lg-6 col-xs-6">
           <div class="box box-primary">
             <div class="box-header with-border">
@@ -224,47 +227,48 @@
               <div class="form-group">
                   <div class="form-group">
                     <label>Nom de l'émission</label>
-                    <input type="text" class="form-control" value="<?php echo $titre ?>" placeholder="<?php echo $titre ?>">
+                    <input name="titre" type="text" class="form-control" value="<?php echo $titre ?>" placeholder="<?php echo $titre ?>">
                   </div>
               </div>
               <br>
               <div class="form-group">
                 <label for="exampleInputFile">Modifier image de couverture</label>
-                <input type="file" id="exampleInputFile">
+                <input name="image" type="file" id="exampleInputFile">
               </div>
             </div>
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
-          <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Programmation émission</h3>
-            </div>
-            <div class="box-body">
-              <div class="form-group">
-                <label>Début du programme</label>
-                <div class="input-group">
-                  <div class="input-group-addon">
-                    <i class="fa fa-clock-o"></i>
-                  </div>
-                  <input type="text" class="form-control pull-left" id="horaire_debut">
-                </div><!-- /.input group -->
-                <br>
-                <label>Fin du programme</label>
-                <div class="input-group">
-                  <div class="input-group-addon">
-                    <i class="fa fa-clock-o"></i>
-                  </div>
-                  <input type="text" class="form-control pull-left" id="horaire_fin">
-                </div><!-- /.input group -->
-              </div><!-- /.form group -->
-
-            </div>
-            <div class="box-footer">
-              <button type="submit" class="btn btn-primary">Ajouter</button>
-            </div>
-            <!-- /.box-body -->
-          </div>
+		  	<!-- OSEF -->
+	          <div class="box box-primary">
+	            <div class="box-header with-border">
+	              <h3 class="box-title">Programmation émission</h3>
+	            </div>
+	            <div class="box-body">
+	              <div class="form-group">
+	                <label>Début du programme</label>
+	                <div class="input-group">
+	                  <div class="input-group-addon">
+	                    <i class="fa fa-clock-o"></i>
+	                  </div>
+	                  <input type="text" class="form-control pull-left" id="horaire_debut">
+	                </div><!-- /.input group -->
+	                <br>
+	                <label>Fin du programme</label>
+	                <div class="input-group">
+	                  <div class="input-group-addon">
+	                    <i class="fa fa-clock-o"></i>
+	                  </div>
+	                  <input type="text" class="form-control pull-left" id="horaire_fin">
+	                </div><!-- /.input group -->
+	              </div><!-- /.form group -->
+			<!-- FIN OSEF -->
+	            </div>
+	            <div class="box-footer">
+	              <button type="submit" class="btn btn-primary">Ajouter</button>
+	            </div>
+	            <!-- /.box-body -->
+	          </div>
           <!-- /.box -->
         </div>
         <div class="col-md-6">
@@ -274,15 +278,15 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body pad">
-              <form role="form">
-                <textarea class="textarea" placeholder="Rédiger l'article" style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php echo $description; ?></textarea>
+                <textarea name="description" class="textarea" placeholder="Rédiger l'article" style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php echo $description; ?></textarea>
             </div>
             <div class="box-footer">
-              <button type="submit" data-toggle="tooltip" title="De toute façon ça marche pô là" class="btn btn-primary disabled">Modifier</button>
+              <button type="submit" class="btn btn-primary">Modifier</button>
             </div>
-          </form>
           </div>
         </div>
+		<input style="display:none;" name='emission' value="<?=$id;?>"/>
+		</form>
       </div>
       <br>
       <br>

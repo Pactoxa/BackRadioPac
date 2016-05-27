@@ -1,28 +1,28 @@
 <?php
 	include "../includes/database.php";
-	if(isset($_POST['titre']) && isset($_POST['contenu']) && isset($_POST['categorie'])){
+	if(isset($_POST['titre']) && isset($_POST['contenu']) && isset($_POST['emission'])){
 
 		$titre = $_POST['titre'];
 		$contenu = $_POST['contenu'];
-		$categorie = $_POST['categorie'];
+		$emission = $_POST['emission'];
 
-		if($titre != "" && $contenu != "" && $categorie != ""){
+		if($titre != "" && $contenu != "" && $emission != ""){
 
 			if(isset($_FILES['image']) && $_FILES['image']['size'] > 0){
 				$extensions_valides = array( 'jpg' , 'jpeg' , 'png' );
 				$extension_upload = strtolower(substr(strrchr($_FILES['image']['name'], '.'),1));
 
 				if ($_FILES['image']['error'] > 0 || $_FILES['image']['size'] > 2000000 || !in_array($extension_upload,$extensions_valides)){
-					header("Location: ../ajout_article.php?message=Erreur lors de l'ajout");
+					header("Location: ../gestion_emission.php?message=Erreur lors de l'ajout&id=$emission");
 				} else {
-					$sql = "INSERT INTO articles (date_article, titre_article, contenu_article, categ_article) VALUES (NOW(),?,?,?)";
+					$sql = "INSERT INTO articles (date_article, titre_article, contenu_article,id_emission) VALUES (NOW(),?,?,?)";
 				    $req = $db->prepare($sql);
-				    $req->execute(array($titre,$contenu,$categorie));
+				    $req->execute(array($titre,$contenu,$emission));
 				}
 			} else {
-				$sql = "INSERT INTO articles (date_article, titre_article, contenu_article, categ_article) VALUES (NOW(),?,?,?)";
+				$sql = "INSERT INTO articles (date_article, titre_article, contenu_article, id_emission) VALUES (NOW(),?,?,?)";
 			    $req = $db->prepare($sql);
-			    $req->execute(array($titre,$contenu,$categorie));
+			    $req->execute(array($titre,$contenu,$emission));
 			}
 
 			if(isset($_FILES['image']) && $_FILES['image']['size'] > 0){
@@ -30,7 +30,7 @@
 				$extension_upload = strtolower(substr(strrchr($_FILES['image']['name'], '.'),1));
 
 				if ($_FILES['image']['error'] > 0 || $_FILES['image']['size'] > 2000000 || !in_array($extension_upload,$extensions_valides)){
-					header("Location: ../ajout_article.php?message=Erreur lors de l'ajout");
+					header("Location: ../gestion_emission.php?message=Erreur lors de l'ajout&id=$emission");
 				} else {
 
 					$sql = "SELECT MAX(id_article) as max FROM articles";
@@ -61,7 +61,7 @@
 				    $req->execute(array($tag,$id));
 				}
 			}
-			header("Location: ../ajout_article.php?message=Ajout avec success");
+			header("Location: ../gestion_emission.php?message=Ajout avec success&id=$emission");
 		}
 
 	} else {

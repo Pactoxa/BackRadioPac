@@ -61,21 +61,21 @@
           </div>
           <div class="box-body">
 						<div class="form-group">
-              <label>Nom de l'événement</label>
-            	<input type="text" class="form-control" value="" placeholder="Nom de l'événement">
-            </div>
+			              <label>Nom de l'événement</label>
+			            	<input type="text" class="form-control" value="" placeholder="Nom de l'événement">
+			            </div>
 						<div class="form-group">
-              <label>Lieu de l'événement</label>
-            	<input type="text" class="form-control" value="" placeholder="Lieu de l'événement">
-            </div>
+			              <label>Lieu de l'événement</label>
+			            	<input type="text" class="form-control" value="" placeholder="Lieu de l'événement">
+			            </div>
 						<div class="form-group">
-              <label>Description de l'événement (calendrier)</label>
-            	<input type="text" class="form-control" value="" placeholder="Description pour calendrier">
-            </div>
+			              <label>Description de l'événement (calendrier)</label>
+			            	<input type="text" class="form-control" value="" placeholder="Description pour calendrier">
+			            </div>
 						<div class="form-group">
-              <label>Lien du site web de l'événement </label>
-            	<input type="text" class="form-control" value="" placeholder="Lien du site web de l'événement">
-            </div>
+			              <label>Lien du site web de l'événement </label>
+			            	<input type="text" class="form-control" value="" placeholder="Lien du site web de l'événement">
+			            </div>
             <div class="form-group">
               <label>Type d'événement</label>
               <select class="form-control select2" style="width: 100%;">
@@ -203,5 +203,20 @@
 
   });
 </script>
+
+<script>
+
+	var toast = $("#custom-toast");
+	function show_toast(message){
+		toast.html(message);
+		toast.slideToggle().delay(2000).slideToggle();
+	}
+
+</script>
+<?php
+	if(isset($_GET['message'])){ ?>
+		<script>show_toast('<?=$_GET['message'];?>');</script>
+	<?php }
+?>
 </body>
 </html>

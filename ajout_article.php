@@ -54,7 +54,7 @@
     <br>
     <!-- Main content -->
     <section class="content">
-	  <form method="post" action="traitements/ajax/add_article.php" enctype="multipart/form-data">
+	  <form method="post" action="traitements/add_article.php" enctype="multipart/form-data">
       <!-- Your Page Content Here -->
 		    <div class="row">
 			      <div class="col-md-6">
