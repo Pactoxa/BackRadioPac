@@ -1,4 +1,5 @@
 <?php
+  include "includes/check_connection.php";
   include'includes/database.php';
 
   $sql = "SELECT * FROM tags";

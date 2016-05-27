@@ -1,4 +1,7 @@
-<?php include'includes/database.php';?>
+<?php
+	include "includes/check_connection.php";
+	include'includes/database.php';
+?>
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
